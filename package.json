@@ -1,0 +1,30 @@
+{
+  "name": "findyouranimal",
+  "version": "1.0.0",
+  "description": "---",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "lint": "eslint .",
+    "install": "cert\\generate.sh",
+    "test": "npm run -s lint && node test\\all.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IP94-JYNK/FindYourAnimal.git"
+  },
+  "author": "JYNK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IP94-JYNK/FindYourAnimal/issues"
+  },
+  "homepage": "https://github.com/IP94-JYNK/FindYourAnimal#readme",
+  "dependencies": {
+    "nodemailer": "^6.4.18",
+    "pg": "^8.5.1",
+    "ws": "^7.4.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0"
+  }
+}
