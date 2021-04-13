@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../node_modules/font-awesome/css/font-awesome.min.css">
+  <link href="css/styles.css" rel="stylesheet">
+  <title>FindYourAnimal: Favourites</title>
+
+</head>
+
+<body>
+  <div class="main d-flex flex-column">
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+      <div class="container">
+        <a class="navbar-brand mr-auto" href="#"><img src="img/avatar.jpg" height="40" width="40"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="Navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-home fa-lg"></span> Profile</a></li>
+            <li class="nav-item active"><a class="nav-link" href="#"><span class="fa fa-home fa-lg"></span> Chat</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-home fa-lg"></span> Search</a></li>
+            <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-heart fa-lg"></span> Favourites</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="jumbotron">
+      <div class="container">
+        <div class="row row-header">
+          <div class="col-12 col-sm-6">
+            <h1>Chat</h1>
+            <p>Какое-то описание!</p>
+          </div>
+          <div class="col-12 col-sm align-self-center">
+            <img src="" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container page-wrapper d-flex flex-column">
+      <div class="row breadcrumb-wrapper">
+        <ol class="col-12 breadcrumb">
+          <li class="breadcrumb-item"><a href="./index.html">Profile</a></li>
+          <li class="breadcrumb-item active">Chat</li>
+        </ol>
+      </div>
+
+      <div class="row dialogs-wrapper">
+        <div class="dialogs-items-wrapper col-sm-3">
+          <ul class="list-group dialogs-items">
+            <li class="list-group-item dialog align-items-end d-flex active">
+              <img src="img/avatar.jpg" class="ava mr-3 rounded-circle">
+              <a href="#">Pet 1</a>
+            </li>
+            <li class="list-group-item dialog align-items-end d-flex">
+              <img src="img/avatar.jpg" class="ava mr-3 rounded-circle">
+              <a href="#">Pet 2</a>
+            </li>
+            <li class="list-group-item dialog align-items-end d-flex">
+              <img src="img/avatar.jpg" class="ava mr-3 rounded-circle">
+              <a href="#">Pet 1</a>
+            </li>
+            <li class="list-group-item dialog align-items-end d-flex">
+              <img src="img/avatar.jpg" class="ava mr-3 rounded-circle">
+              <a href="#">Pet 2</a>
+            </li>
+            <li class="list-group-item dialog align-items-end d-flex">
+              <img src="img/avatar.jpg" class="ava mr-3 rounded-circle">
+              <a href="#">Pet 2</a>
+            </li>
+            <li class="list-group-item dialog align-items-end d-flex">
+              <img src="img/avatar.jpg" class="ava mr-3 rounded-circle">
+              <a href="#">Pet 1</a>
+            </li>
+            <li class="list-group-item dialog align-items-end d-flex">
+              <img src="img/avatar.jpg" class="ava mr-3 rounded-circle">
+              <a href="#">Pet 2</a>
+            </li>
+
+
+          </ul>
+        </div>
+
+
+
+        <div class="messages-items-wrapper col-sm-9 d-flex flex-column justify-content-end">
+          <div class="scroll-wrapper">
+            <div class=" messages d-flex flex-column">
+              <div class="message companion-message first align-items-start d-flex" }>
+                <img class="message-ava rounded-circle" src="img/avatar.jpg" alt="" />
+                <div class="message-text align-items-center d-flex">
+                  Hello!
+                </div>
+              </div>
+              <div class="message companion-message align-items-start d-flex" }>
+                <img class="message-ava rounded-circle" src="img/avatar.jpg" alt="" />
+                <div class="message-text">
+                  Second message
+                </div>
+              </div>
+              <div class="message first align-items-start d-flex" }>
+                <img class="message-ava rounded-circle" src="img/avatar.jpg" alt="" />
+                <div class="message-text">
+                  Олесь Петрів, один із засновників Reface, 18 березня розповість про перспективи розвитку комп'ютерного
+                  зору.
+                  А ще, як головний технічний директор — він пояснить про:
+                  • перевагу представлень зображень в функціональному просторі;
+                  • майбутнє 2D та 3D відображень візуальних концептів як функцій простору.
+                </div>
+              </div>
+
+              <div class="message align-items-start d-flex" }>
+                <img class="message-ava rounded-circle" src="img/avatar.jpg" alt="" />
+                <div class="message-text">
+                  Олесь Петрів, один із засновників Reface, 18 березня розповість про перспективи розвитку комп'ютерного
+                  зору.
+                  А ще, як головний технічний директор — він пояснить про:
+                  • перевагу представлень зображень в функціональному просторі;
+                  • майбутнє 2D та 3D відображень візуальних концептів як функцій простору.
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="form-group input-group d-flex align-items-center">
+            <textarea type="text" class="form-control input-text" id="usr"></textarea>
+            <button type="submit" class="send-button btn btn-primary .mb-2">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <p>© Copyright 2021 Find Your Animal</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="src/index.js"></script>
+</body>
+
+</html>
