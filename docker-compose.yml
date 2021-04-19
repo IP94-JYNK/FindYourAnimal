@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  server:
+    container_name: server
+    build: .
+    command: npm start
+    ports:
+      - 8000:8000
+      - 8001:8001
+      - 8002:8002
+      - 8003:8003
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+  db:
+    container_name: db
+    build: ./db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+volumes:
+  postgres_data:
