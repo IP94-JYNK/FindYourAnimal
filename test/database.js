@@ -23,7 +23,6 @@ describe('database', () => {
   const user = {
     name: empty,
     password: empty,
-    fullName: empty,
     email: empty,
   };
   beforeEach(async () => {
