@@ -5,7 +5,8 @@ const { expect } = require('chai');
 const Server = require('../lib/server.js');
 
 function Config() {
-  (this.host = '127.0.0.1'), (this.ports = [8000, 8001, 8002, 8003]);
+  this.host = '127.0.0.1',
+  this.ports = [ 8000, 8001, 8002, 8003 ];
   this.timeout = 5000;
   this.concurrency = 1000;
   this.queue = { size: 2000, timeout: 3000 };

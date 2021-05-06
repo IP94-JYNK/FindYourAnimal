@@ -1,4 +1,4 @@
 ({
-  user: 'user@gmail.com',
-  pass: 'pass',
+  user: 'email',
+  pass: 'password',
 });
