@@ -1,5 +1,5 @@
 ({
-  host: '127.0.0.1',
+  host: 'db',
   port: 5432,
   database: 'findyouranimal',
   user: 'usertest',
