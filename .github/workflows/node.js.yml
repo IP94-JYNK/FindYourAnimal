@@ -20,7 +20,7 @@ jobs:
 
     services:
       db:
-        build: ./db
+        build: ../../db
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
