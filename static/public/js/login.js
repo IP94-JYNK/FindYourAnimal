@@ -2,6 +2,8 @@ import { getApi } from './general/loader.js';
 const load = ['status'];
 const special = ['signIn'];
 
+console.log('logsw');
+
 const form = document.querySelector('form');
 const loginInput = document.querySelector('input[name="login"]');
 const passwordInput = document.querySelector('input[name="password"]');
