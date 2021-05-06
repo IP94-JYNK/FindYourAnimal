@@ -7,7 +7,7 @@
     "start": "node server.js",
     "lint": "eslint .",
     "install": "cert\\generate.sh",
-    "test": "npm run -s lint && node test\\all.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -20,11 +20,13 @@
   },
   "homepage": "https://github.com/IP94-JYNK/FindYourAnimal#readme",
   "dependencies": {
+    "chai": "^4.3.4",
     "nodemailer": "^6.4.18",
     "pg": "^8.5.1",
     "ws": "^7.4.3"
   },
   "devDependencies": {
-    "eslint": "^7.20.0"
+    "eslint": "^7.20.0",
+    "mocha": "^8.3.2"
   }
 }
