@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint .",
-    "install": "cert/generate.sh",
+    "installKeys": "cert/generate.sh",
     "test": "mocha"
   },
   "repository": {
