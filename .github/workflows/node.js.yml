@@ -20,13 +20,7 @@ jobs:
 
     services:
       db:
-        image: postgres
-        env:
-          POSTGRES_USER: usertest
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: findyouranimal
-          POSTGRES_HOST: 127.0.0.1
-          POSTGRES_PORT: 5432  
+        build: ./db
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
