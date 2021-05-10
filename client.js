@@ -19,3 +19,5 @@ fs.readFile(path.join(__dirname, 'db/structure.sql'), 'utf8', (err, data) => {
     process.exit(0);
   });
 });
+
+// comments
