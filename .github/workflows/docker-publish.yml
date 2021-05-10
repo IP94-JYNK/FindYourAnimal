@@ -15,12 +15,36 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+    strategy:
+      matrix:
+        node-version: [14.x, 15.x]
 
-      - name: Run tests
-        run: |
-          docker-compose --file docker-compose.test.yml up --abort-on-container-exit
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_USER: usertest
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: findyouranimal
+          POSTGRES_HOST: 127.0.0.1
+          POSTGRES_PORT: 5432  
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: node client.js
+    - run: npm test
   push:
     needs: test
 
