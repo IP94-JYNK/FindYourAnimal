@@ -7,7 +7,7 @@
     "start": "node server.js",
     "lint": "eslint .",
     "installKeys": "cert/generate.sh",
-    "test": "npx mocha"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
