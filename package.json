@@ -7,7 +7,7 @@
     "start": "node server.js",
     "lint": "eslint .",
     "installKeys": "cert/generate.sh",
-    "test": "node ./node_modules/mocha/bin/mocha"
+    "test": "node node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
