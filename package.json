@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint .",
-    "install": "cert\\generate.sh",
-    "test": "mocha"
+    "installKeys": "cert/generate.sh",
+    "test": "npx mocha"
   },
   "repository": {
     "type": "git",

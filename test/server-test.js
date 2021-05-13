@@ -1,6 +1,6 @@
 'use strict';
 
-const {expect} = require('chai');
+const { expect } = require('chai');
 
 const Server = require('../lib/server.js');
 
@@ -20,7 +20,7 @@ describe('server', () => {
     server = new Server(config);
   });
   after(() => {
-    server.close().catch((err)=> console.log(err));
+    server.close().catch(err => console.log(err));
   });
   it('server should exist', () => {
     expect(server).to.exist;
