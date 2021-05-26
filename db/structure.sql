@@ -10,6 +10,25 @@ ALTER TABLE SystemUser ADD CONSTRAINT pkSystemUser PRIMARY KEY (Id);
 
 CREATE UNIQUE INDEX akSystemUserEmail ON SystemUser (Email);
 
+CREATE TABLE Dialog (
+  Id        serial,
+  User1     text UNIQUE NOT NULL,
+  User2     text UNIQUE NOT NULL
+);
+
+ALTER TABLE Dialog ADD CONSTRAINT fkDialogUser1 FOREIGN KEY (User1) REFERENCES SystemUser (Email) ON DELETE CASCADE;
+ALTER TABLE Dialog ADD CONSTRAINT fkDialogUser2 FOREIGN KEY (User2) REFERENCES SystemUser (Email) ON DELETE CASCADE;
+
+CREATE TABLE Message (
+  Id        serial,
+  User1     text NOT NULL,
+  DialogId  Int NOT NULL,
+  Content   text NOT NULL
+);
+
+ALTER TABLE Message ADD CONSTRAINT fkMessageUser1 FOREIGN KEY (User1) REFERENCES SystemUser (Email) ON DELETE CASCADE;
+ALTER TABLE Message ADD CONSTRAINT fkMessageDialogId FOREIGN KEY (DialogId) REFERENCES Dialog (Id) ON DELETE CASCADE;
+
 -- CREATE TABLE findPeter {
 --   Id            serial,
 --   Phone         varchar(12),
