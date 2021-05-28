@@ -10,6 +10,24 @@ ALTER TABLE SystemUser ADD CONSTRAINT pkSystemUser PRIMARY KEY (Id);
 
 CREATE UNIQUE INDEX akSystemUserEmail ON SystemUser (Email);
 
+CREATE TABLE Dialog (
+  Id        serial,
+  User1     text UNIQUE NOT NULL
+  User2     text UNIQUE NOT NULL
+);
+
+ALTER TABLE Dialog ADD CONSTRAINT fkDialogUser1 FOREIGN KEY (User1) REFERENCES SystemUser (Email) ON DELETE CASCADE;
+ALTER TABLE Dialog ADD CONSTRAINT fkDialogUser2 FOREIGN KEY (User2) REFERENCES SystemUser (Email) ON DELETE CASCADE;
+
+CREATE TABLE Message (
+  Id        serial,
+  User      text UNIQUE NOT NULL
+  DialogId    Int UNIQUE NOT NULL
+);
+
+ALTER TABLE Message ADD CONSTRAINT fkDialogUser FOREIGN KEY (User) REFERENCES SystemUser (Email) ON DELETE CASCADE;
+ALTER TABLE Message ADD CONSTRAINT fkDialogDialogId FOREIGN KEY (DialogId) REFERENCES Dialog (Id) ON DELETE CASCADE;
+
 CREATE TABLE petFinder (
   Id            serial,
   Phone         varchar(12),
