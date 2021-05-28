@@ -1,5 +1,4 @@
 'use strict';
-///import { create } from 'eslint/lib/rules/*';
 import { getApi } from './general/loader.js';
 
 const dialogItems = document.querySelector('.dialogs-items');
@@ -11,7 +10,7 @@ const scrollWrapper = document.querySelector('.scroll-wrapper');
 let user;
 
 const load = ['status'];
-const special = ['getMessagesByDialogId', 'getUserName', 'createMessage', 'getInterlocutors', 'getDialogsByEmail', 'getCurrentUser', 'createDialog'];
+const special = ['getLastMessageByDialogId', 'getMessagesByDialogId', 'getUserName', 'createMessage', 'getInterlocutors', 'getDialogsByEmail', 'getCurrentUser', 'createDialog'];
 
 const newDialogItem = (name, email, id) => {
     const dialogItemElement = document.createElement('li');
@@ -40,14 +39,7 @@ const newMessage = (content, isFirst, isCompanion) => {
     return message;
 }
 
-/**
- *               <div class="message companion-message first align-items-start d-flex" }>
-                <img class="message-ava rounded-circle" src="../public/img/avatar.jpg" alt="" />
-                <div class="message-text align-items-center d-flex">
-                  Hello!
-                </div>
-              </div>
- */
+const scrollMessageDown = () => scrollWrapper.scrollTop = 10000;
 
 (async () => {
     window.api = await getApi(load, special);
@@ -58,7 +50,6 @@ const newMessage = (content, isFirst, isCompanion) => {
     for (const dialog of dialogs) {
         const companionEmail = 
         dialog.user1 === userEmail ? dialog.user2 : dialog.user1;
-        console.log()
         const dialogId = dialog.id;
         const companionName = await api.getUserName(companionEmail);
 
@@ -69,24 +60,12 @@ const newMessage = (content, isFirst, isCompanion) => {
         );
         dialogItems.append(dialogItem);
     }
-    /*
-    console.log(dialogs);
-    const interlocutors = await api.getInterlocutors(userEmail);
-    console.log(interlocutors);
-    for (const interlocutor of interlocutors) {
-        const dialogItem = newDialogItem(interlocutor.name);
-        dialogItems.append(dialogItem);
-    }*/
-    //const result = api.createDialog({ user1: user.email, user2: 'yulia032022@gmail.com' });
-    //const result = api.createMessage({ user1: 'yulia032022@gmail.com', dialogId: 2, content: 'How are you?' });
-    //const result = api.createMessage({ user1: 'yulia032022@gmail.com', dialogId: 2, content: 'Ok' });
-    //console.log(result);
 })();
 
-scrollWrapper.scrollTop = 10000;
+scrollMessageDown();
 
 dialogItems.addEventListener('click', async event => {
-    let activeDialogItem = document.querySelector('.dialogs-items .active');
+    let activeDialogItem = dialogItems.querySelector('.active');
     const target = event.target;
     if (target.tagName === 'LI') {
         if (activeDialogItem) activeDialogItem.classList.remove('active');
@@ -103,29 +82,27 @@ dialogItems.addEventListener('click', async event => {
             const messageItem = newMessage(message.content, isFirst, isCompanion);
             messagesWrapper.append(messageItem);
         }
-        scrollWrapper.scrollTop = 10000;
+        scrollMessageDown();
     }
 });
 
-sendButton.addEventListener('click', (event) => {
-    const lastMessage = messages.querySelector('.message:last-child');
-    const messageText = inputText.value;
+sendButton.addEventListener('click', async event => {
+    const prevMessage = messagesWrapper.querySelector('.message:last-child');
+    const activeDialogItem = dialogItems.querySelector('.active');
+    const dialogId = activeDialogItem.dataset.dialogId;
 
-    //const user1 = user.email;
-    ///const {dialogId} = lastMessage.dataset;
+    const user1 = user.email;
+    const content = inputText.value;
+    const result = await api.createMessage({user1, dialogId, content});
 
-    let messageClass = 'message align-items-start d-flex';
-    messageClass += (!lastMessage || lastMessage.classList.contains('companion-message')) ? 'first' : '';
+    const message = await api.getLastMessageByDialogId(dialogId);
+    const isFirst = !prevMessage || prevMessage.classList.contains('companion-message');
+    const isCompanion = false;
+
+    const messageItem = newMessage(message.content, isFirst, isCompanion);
+    messagesWrapper.append(messageItem);
 
     inputText.value = '';
-    messages.insertAdjacentHTML('beforeend',
-        `
-    <div class="${messageClass}" }>
-        <img class="message-ava rounded-circle" src="../public/img/avatar.jpg" alt="" />
-        <div class="message-text align-items-center d-flex">${messageText}</div>
-    </div>
-`
-    )
+
+    scrollMessageDown();
 });
-
-

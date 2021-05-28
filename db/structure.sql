@@ -12,8 +12,8 @@ CREATE UNIQUE INDEX akSystemUserEmail ON SystemUser (Email);
 
 CREATE TABLE Dialog (
   Id        serial,
-  User1     text UNIQUE NOT NULL,
-  User2     text UNIQUE NOT NULL
+  User1     text NOT NULL,
+  User2     text NOT NULL
 );
 
 ALTER TABLE Dialog ADD CONSTRAINT fkDialogUser1 FOREIGN KEY (User1) REFERENCES SystemUser (Email) ON DELETE CASCADE;
