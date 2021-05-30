@@ -89,6 +89,7 @@ window.addEventListener('load', async () => {
 
             target.classList.add('active');
             messagesWrapper.innerHTML = '';
+            inputText.value = '';
 
             const { dialogId } = target.dataset;
             const { messages } = await api.getMessagesByDialogId(dialogId);
