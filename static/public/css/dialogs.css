@@ -142,3 +142,7 @@ nav, header {
   max-height: 356px;
   border-radius: .25rem;
 }
+
+.dialogs-wrapper h1 {
+  color:#9d9ca0;
+}

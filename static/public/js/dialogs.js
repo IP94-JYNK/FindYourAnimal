@@ -65,7 +65,13 @@ window.addEventListener('load', async () => {
     const result = await api.getCurrentUser();
     user = result.user;
     const userEmail = user.email;
-    const { dialogs } = await api.getDialogsByEmail(userEmail);
+    let { dialogs } = await api.getDialogsByEmail(userEmail);
+
+    if (dialogs.length === 0) {
+        const dialogsWrapper = document.querySelector('.dialogs-wrapper');
+        dialogsWrapper.innerHTML = '<h1>No dialogues yet...<h1>';
+        return;
+    }
 
     for (const dialog of dialogs) {
         const companionEmail =
