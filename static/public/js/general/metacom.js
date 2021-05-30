@@ -1,6 +1,6 @@
 'use strict';
 
-class Metacom {
+export class Metacom {
   constructor(host) {
     this.socket = new WebSocket('wss://' + host);
     this.api = {};
@@ -74,5 +74,3 @@ class Metacom {
     };
   }
 }
-
-module.exports = { Metacom };

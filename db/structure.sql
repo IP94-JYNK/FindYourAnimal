@@ -14,7 +14,6 @@ CREATE TABLE Dialog (
   Id        serial,
   User1     text NOT NULL,
   User2     text NOT NULL
-);
 
 ALTER TABLE Dialog ADD CONSTRAINT fkDialogUser1 FOREIGN KEY (User1) REFERENCES SystemUser (Email) ON DELETE CASCADE;
 ALTER TABLE Dialog ADD CONSTRAINT fkDialogUser2 FOREIGN KEY (User2) REFERENCES SystemUser (Email) ON DELETE CASCADE;
@@ -30,47 +29,47 @@ CREATE TABLE Message (
 ALTER TABLE Message ADD CONSTRAINT fkMessageUser1 FOREIGN KEY (User1) REFERENCES SystemUser (Email) ON DELETE CASCADE;
 ALTER TABLE Message ADD CONSTRAINT fkMessageDialogId FOREIGN KEY (DialogId) REFERENCES Dialog (Id) ON DELETE CASCADE;
 
--- CREATE TABLE findPeter {
---   Id            serial,
---   Phone         varchar(12),
---   Description   text,
---   Location      varchar(256),
---   Whome         varchar(256),
---   Age           integer,
---   UserEmail     text NOT NULL
--- }
+CREATE TABLE petFinder (
+  Id            serial,
+  Phone         varchar(12),
+  Description   text,
+  Location      varchar(256),
+  Whome         varchar(256),
+  Age           integer,
+  UserEmail     text UNIQUE NOT NULL
+);
 
--- ALTER TABLE findPeter ADD CONSTRAINT fkfindPeterUserEmail FOREIGN KEY (UserEmail) REFERENCES SystemUser (Email) ON DELETE CASCADE;
+ALTER TABLE petFinder ADD CONSTRAINT fkpetFinderUserEmail FOREIGN KEY (UserEmail) REFERENCES SystemUser (Email) ON DELETE CASCADE;
 
--- ALTER TABLE findPeter ADD CONSTRAINT pkfindPeter PRIMARY KEY (Id);
+ALTER TABLE petFinder ADD CONSTRAINT pkpetFinder PRIMARY KEY (Id);
 
--- CREATE TABLE petOwner {
---   Id            serial,
---   Phone         varchar(12),
---   Description   text,
---   Location      varchar(256),
---   Age           integer,
---   UserEmail     text NOT NULL
--- }
+CREATE TABLE petOwner (
+  Id            serial,
+  Phone         varchar(12),
+  Description   text,
+  Location      varchar(256),
+  Age           integer,
+  UserEmail     text UNIQUE NOT NULL
+);
 
--- ALTER TABLE petOwner ADD CONSTRAINT fkpetOwnerUserEmail FOREIGN KEY (UserEmail) REFERENCES SystemUser (Email) ON DELETE CASCADE;
+ALTER TABLE petOwner ADD CONSTRAINT fkpetOwnerUserEmail FOREIGN KEY (UserEmail) REFERENCES SystemUser (Email) ON DELETE CASCADE;
 
--- ALTER TABLE petOwner ADD CONSTRAINT pkpetOwner PRIMARY KEY (Id);
+ALTER TABLE petOwner ADD CONSTRAINT pkpetOwner PRIMARY KEY (Id);
 
--- CREATE TABLE pet {
---   Id            serial,
---   Alias         varchar(256),
---   Type          varchar(50),
---   Species       varchar(256),
---   Description   text,
---   Age           varchar(256),
---   Sex           varchar(10),
---   OwnerId       integer NOT NULL
--- }
+CREATE TABLE pet (
+  Id            serial,
+  Alias         varchar(256),
+  Type          varchar(50),
+  Species       varchar(256),
+  Description   text,
+  Age           varchar(256),
+  Sex           varchar(10),
+  OwnerEmail    text UNIQUE NOT NULL
+);
 
--- ALTER TABLE pet ADD CONSTRAINT fkpetOwnerId FOREIGN KEY (OwnerId) REFERENCES petOwner (Id) ON DELETE CASCADE;
+ALTER TABLE pet ADD CONSTRAINT fkpetOwnerEmail FOREIGN KEY (OwnerEmail) REFERENCES petOwner (UserEmail) ON DELETE CASCADE;
 
--- ALTER TABLE pet ADD CONSTRAINT pkpet PRIMARY KEY (Id);
+ALTER TABLE pet ADD CONSTRAINT pkpet PRIMARY KEY (Id);
 
 CREATE TABLE Session (
   Id      serial,
