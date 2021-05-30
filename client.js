@@ -1,3 +1,5 @@
+'use strict';
+
 const { Client } = require('pg');
 const fs = require('fs');
 const path = require('path');
@@ -14,7 +16,6 @@ pgclient.connect();
 
 fs.readFile(path.join(__dirname, 'db/structure.sql'), 'utf8', (err, data) => {
   if (err) throw err;
-  console.log(data);
   pgclient.query(data, (err, res) => {
     if (err) throw err;
     process.exit(0);
