@@ -1,5 +1,4 @@
 async email => {
-    const userName = await application.auth.getUserName(email);
-    console.log(userName);
-    return userName.name;
+    const { name } = await application.auth.getUserName(email);
+    return { result: 'success', name };
 };

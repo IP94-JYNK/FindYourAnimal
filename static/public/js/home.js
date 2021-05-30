@@ -6,10 +6,11 @@ const special = ['deleteUser'];
   const { result } = await api.status();
   if (result === 'logged') {
     console.log('logged');
+    /*
     setTimeout(async () => {
       await deleteUser();
       window.location = '/';
-    }, 10000);
+    }, 10000);*/
   } else {
     console.log('not logged');
   }
