@@ -3,7 +3,8 @@ CREATE TABLE SystemUser (
   Name      varchar(64) NOT NULL,
   Password  varchar(255) NOT NULL,
   Email     text UNIQUE NOT NULL,
-  Pet       boolean
+  Pet       boolean,
+  Favorites text []
 );
 
 ALTER TABLE SystemUser ADD CONSTRAINT pkSystemUser PRIMARY KEY (Id);
