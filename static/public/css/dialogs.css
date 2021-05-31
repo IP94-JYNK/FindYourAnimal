@@ -1,0 +1,148 @@
+.row-header {
+  margin: 0px auto;
+  padding: 0px 0px;
+}
+
+.row-content {
+  margin: 0px auto;
+  padding: 50px 0px;
+  border-bottom: 1px ridge;
+  min-height: 400px;
+}
+
+.footer {
+  background-color: #D1C4E9;
+  margin: 0px auto;
+  padding: 20px 0px;
+  flex-shrink: 0;
+  width: 100vw;
+}
+
+.jumbotron {
+  margin: 0px;
+  padding: 30px 30px;
+  background: #9575CD;
+  color: floralwhite;
+}
+
+body {
+  padding: 50px 0px 0px 0px;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+html, body {
+  height: 100%;
+}
+
+.main {
+  flex: 1 0 auto;
+}
+
+.scroll-wrapper {
+  overflow: auto;
+  max-height: 268px;
+}
+
+.navbar-dark {
+  background-color: #512DA8;
+}
+
+.dialogs-items {
+  padding: 0;
+  border: 1px solid rgba(0,0,0,.125);
+  overflow: auto;
+}
+
+.dialog img {
+  width: 50px;
+  height: 50px;
+}
+
+.dialog {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px 20px;
+}
+
+.dialog a {
+  color: black;
+  text-decoration: none !important;
+}
+
+.dialog.active a {
+  color: #ffffff;
+}
+
+.messages {
+  padding: 10px 10px 0;
+  justify-content: flex-end;
+}
+
+.messages-items-wrapper {
+  background-color: paleturquoise;
+  border-radius: .25rem;
+}
+
+.message-ava {
+  width: 35px;
+  height: 35px;
+  margin: 0 10px;
+}
+
+.message {
+  padding: 5px 0;
+}
+
+.message:not(.companion-message) {
+  flex-direction: row-reverse;
+}
+
+.message-text {
+  background-color: white;
+  padding: 5px 10px;
+  max-width: 400px;
+  border-radius: .25rem;
+}
+
+.message:not(.first) img {
+  display: none;
+}
+
+.message:not(.first) {
+  padding: 0 55px 5px;
+}
+
+nav, header {
+  flex: 0;
+}
+
+.page-wrapper {
+  flex: 1 0 auto;
+  margin-bottom: 10px;
+}
+
+.breadcrumb-wrapper {
+  flex: 0;
+}
+
+.input-group {
+  margin: 10px;
+}
+
+.send-button {
+  margin: 15px;
+}
+
+.dialogs-items-wrapper {
+  padding: 0;
+  overflow: auto;
+  max-height: 356px;
+  border-radius: .25rem;
+}
+
+.dialogs-wrapper h1 {
+  color:#9d9ca0;
+}
