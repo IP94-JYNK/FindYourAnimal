@@ -1,7 +1,7 @@
 import { getApi } from './general/loader.js';
 
 const load = ['status'];
-const special = ['deleteFavorite'];
+const special = ['deleteFavorite', 'grtCurrentUser'];
 
 let user;
 let favorites;
