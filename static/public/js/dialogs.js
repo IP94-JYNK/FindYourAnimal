@@ -2,44 +2,44 @@
 import { getApi } from './general/loader.js';
 
 const special = [
-    "getLastMessageByDialogId",
-    "getMessagesByDialogId",
-    "getUserName",
-    "createMessage",
-    "getDialogsByEmail",
-    "getCurrentUser",
-    "createDialog"
+  "getLastMessageByDialogId",
+  "getMessagesByDialogId",
+  "getUserName",
+  "createMessage",
+  "getDialogsByEmail",
+  "getCurrentUser",
+  "createDialog"
 ];
 
 (async () => {
-    window.api = await getApi(special);
+  window.api = await getApi(special);
 })();
 
 const newDialogItem = (name, id) => {
-    const dialogItemElement = document.createElement('li');
-    dialogItemElement.classList.add(
-        "list-group-item",
-        "dialog",
-        "align-items-end",
-        "d-flex"
-    );
-    dialogItemElement.dataset.dialogId = id;
+  const dialogItemElement = document.createElement('li');
+  dialogItemElement.classList.add(
+    "list-group-item",
+    "dialog",
+    "align-items-end",
+    "d-flex"
+  );
+  dialogItemElement.dataset.dialogId = id;
 
-    dialogItemElement.innerHTML = `
+  dialogItemElement.innerHTML = `
     <img src="../public/img/avatar.jpg" class="ava mr-3 rounded-circle">
     <a href="#">${name}</a>
     `;
 
-    return dialogItemElement;
+  return dialogItemElement;
 }
 
 const newMessage = (content, isFirst, isCompanion) => {
-    const message = document.createElement('div');
-    message.classList.add('message', 'align-items-start', 'd-flex');
-    if (isFirst) message.classList.add('first');
-    if (isCompanion) message.classList.add('companion-message');
+  const message = document.createElement('div');
+  message.classList.add('message', 'align-items-start', 'd-flex');
+  if (isFirst) message.classList.add('first');
+  if (isCompanion) message.classList.add('companion-message');
 
-    message.innerHTML = `
+  message.innerHTML = `
     <img
     class="message-ava rounded-circle"
     src="../public/img/avatar.jpg"
@@ -48,100 +48,102 @@ const newMessage = (content, isFirst, isCompanion) => {
     <div class="message-text align-items-center d-flex">${content}</div>
     `;
 
-    return message;
+  return message;
 }
 
 window.addEventListener('load', async () => {
-    const dialogItemsWrapper = document.querySelector('.dialogs-items');
-    const sendButton = document.querySelector('.send-button');
-    const messagesWrapper = document.querySelector('.messages');
-    const inputText = document.querySelector('textarea');
-    const scrollWrapper = document.querySelector('.scroll-wrapper');
+  const dialogItemsWrapper = document.querySelector('.dialogs-items');
+  const sendButton = document.querySelector('.send-button');
+  const messagesWrapper = document.querySelector('.messages');
+  const inputText = document.querySelector('textarea');
+  const scrollWrapper = document.querySelector('.scroll-wrapper');
 
-    let user;
+  let user;
 
-    const scrollMessagesDown = () => scrollWrapper.scrollTop = 10000;
+  const scrollMessagesDown = () => scrollWrapper.scrollTop = 10000;
 
-    const result = await api.getCurrentUser();
-    user = result.user;
-    const userEmail = user.email;
-    let { dialogs } = await api.getDialogsByEmail(userEmail);
+  const result = await api.getCurrentUser();
+  user = result.user;
+  const userEmail = user.email;
+  let { dialogs } = await api.getDialogsByEmail({ email: userEmail });
 
-    if (dialogs.length === 0) {
-        const dialogsWrapper = document.querySelector('.dialogs-wrapper');
-        dialogsWrapper.innerHTML = '<h1>No dialogues yet...<h1>';
-        return;
-    }
+  if (dialogs.length === 0) {
+    const dialogsWrapper = document.querySelector('.dialogs-wrapper');
+    dialogsWrapper.innerHTML = '<h1>No dialogues yet...<h1>';
+    return;
+  }
 
-    for (const dialog of dialogs) {
-        const companionEmail =
-            dialog.user1 === userEmail ? dialog.user2 : dialog.user1;
-        const dialogId = dialog.id;
-        const { name: companionName } = await api.getUserName(companionEmail);
-
-        const dialogItem = newDialogItem(
-            companionName,
-            dialogId
-        );
-        dialogItemsWrapper.append(dialogItem);
-    }
-
-    dialogItemsWrapper.addEventListener('click', async event => {
-        const target = event.target;
-        if (target.tagName === 'LI') {
-            const activeDialogItem =
-                dialogItemsWrapper.querySelector(".active");
-            if (activeDialogItem) activeDialogItem.classList.remove('active');
-
-            target.classList.add('active');
-            messagesWrapper.innerHTML = '';
-            inputText.value = '';
-
-            const { dialogId } = target.dataset;
-            const { messages } = await api.getMessagesByDialogId(dialogId);
-
-            for (let i = 0; i < messages.length; i++) {
-                const message = messages[i];
-
-                const isFirst = message.user1 !== messages[i - 1]?.user1;
-                const isCompanion = message.user1 !== user.email;
-                const messageItem = newMessage(
-                    message.content,
-                    isFirst,
-                    isCompanion
-                );
-
-                messagesWrapper.append(messageItem);
-            }
-            scrollMessagesDown();
-        }
+  for (const dialog of dialogs) {
+    const companionEmail =
+      dialog.user1 === userEmail ? dialog.user2 : dialog.user1;
+    const dialogId = dialog.id;
+    const { name: companionName } = await api.getUserName({
+      email: companionEmail,
     });
 
-    sendButton.addEventListener('click', async event => {
-        const prevMessage = messagesWrapper.querySelector(
-            ".message:last-child"
+    const dialogItem = newDialogItem(
+      companionName,
+      dialogId
+    );
+    dialogItemsWrapper.append(dialogItem);
+  }
+
+  dialogItemsWrapper.addEventListener('click', async event => {
+    const target = event.target;
+    if (target.tagName === 'LI') {
+      const activeDialogItem =
+        dialogItemsWrapper.querySelector(".active");
+      if (activeDialogItem) activeDialogItem.classList.remove('active');
+
+      target.classList.add('active');
+      messagesWrapper.innerHTML = '';
+      inputText.value = '';
+
+      const { dialogId } = target.dataset;
+      const { messages } = await api.getMessagesByDialogId({ dialogId });
+
+      for (let i = 0; i < messages.length; i++) {
+        const message = messages[i];
+
+        const isFirst = message.user1 !== messages[i - 1]?.user1;
+        const isCompanion = message.user1 !== user.email;
+        const messageItem = newMessage(
+          message.content,
+          isFirst,
+          isCompanion
         );
-        const activeDialogItem = dialogItemsWrapper.querySelector('.active');
-        const { dialogId } = activeDialogItem.dataset;
 
-        const user1 = user.email;
-        const content = inputText.value;
-        const { result } = await api.createMessage({
-            user1,
-            dialogId,
-            content,
-        });
-
-        const { message } = await api.getLastMessageByDialogId(dialogId);
-        const isFirst =
-            !prevMessage || prevMessage.classList.contains("companion-message");
-        const isCompanion = false;
-
-        const messageItem = newMessage(message.content, isFirst, isCompanion);
         messagesWrapper.append(messageItem);
+      }
+      scrollMessagesDown();
+    }
+  });
 
-        inputText.value = '';
+  sendButton.addEventListener('click', async event => {
+    const prevMessage = messagesWrapper.querySelector(
+      ".message:last-child"
+    );
+    const activeDialogItem = dialogItemsWrapper.querySelector('.active');
+    const { dialogId } = activeDialogItem.dataset;
 
-        scrollMessagesDown();
+    const user1 = user.email;
+    const content = inputText.value;
+    const { result } = await api.createMessage({
+      user1,
+      dialogId,
+      content,
     });
+
+    const { message } = await api.getLastMessageByDialogId({ dialogId });
+    const isFirst =
+      !prevMessage || prevMessage.classList.contains("companion-message");
+    const isCompanion = false;
+
+    const messageItem = newMessage(message.content, isFirst, isCompanion);
+    messagesWrapper.append(messageItem);
+
+    inputText.value = '';
+
+    scrollMessagesDown();
+  });
 });
