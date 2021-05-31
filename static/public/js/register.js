@@ -35,11 +35,13 @@ window.addEventListener('load', async () => {
     const email = emailInput.value;
     const password = passwordInput.value;
     const password_conf = password_confInput.value;
+    const favorites = [];
     if (password === password_conf) {
       const insert = await api.registerUser({
         name,
         email,
         password,
+        favorites,
       });
       const { denied } = insert;
       if (denied) return exist(denied);
