@@ -1,7 +1,7 @@
 import { getApi } from './general/loader.js';
 
 const load = ['status'];
-const special = ['deleteFavorite', 'grtCurrentUser'];
+const special = ['deleteFavorite', 'getCurrentUser'];
 
 let user;
 let favorites;
@@ -35,7 +35,8 @@ const renderProfiles = (profile) => {
 window.addEventListener('load', async () => {
   window.api = await getApi(load, special);
 
-  user = await api.getCurrentUser();
+  const result = await api.getCurrentUser();
+  user = result.user;
   favorites = user.favorites; 
 
   //render HTML
