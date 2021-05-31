@@ -3,8 +3,8 @@ import { getApi } from './general/loader.js';
 const load = ['status'];
 const special = ['deleteFavorite'];
 
-const user;
-const favorites;
+let user;
+let favorites;
 let profile;
 const profiles = document.getElementById("profiles");
 profiles.innerHTML = '';
