@@ -1,7 +1,7 @@
 ({
   access: 'public',
   method: async ({ email, password }) => {
-    const user = await application.auth.getUser(email);
+    const user = await application.auth.getUserByEmail(email);
     const hash = user ? user.password : undefined;
     const valid = await application.security.validatePassword(password, hash);
     if (!user || !valid) return false;
