@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="../public/css/search.css" rel="stylesheet" />
+    <script src="../public/js/search.js" type="module"></script>
+    <title>FindYourAnimal: Search</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+      <div class="container">
+        <a class="navbar-brand mr-auto" href="#"
+          ><img src="../public/img/avatar.jpg" height="40" width="40"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#Navbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="Navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><span class="fa fa-home fa-lg"></span> Profile</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><span class="fa fa-home fa-lg"></span> Chat</a
+              >
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                ><span class="fa fa-home fa-lg"></span> Search</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><span class="fa fa-heart fa-lg"></span> Favourites</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="jumbotron">
+      <div class="container">
+        <div class="row row-header">
+          <div class="col-12 col-sm-6">
+            <h1>Search</h1>
+            <p>Найдите подходящее вам животное, и напишите хозяину.</p>
+          </div>
+          <div class="col-12 col-sm align-self-center">
+            <img src="" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <ol class="col-12 breadcrumb">
+          <li class="breadcrumb-item"><a href="./index.html">Profile</a></li>
+          <li class="breadcrumb-item active">Search</li>
+        </ol>
+      </div>
+
+      <form id="searchForm">
+        <input
+          type="search"
+          id="searchInp"
+          name="q"
+          placeholder="Искать здесь..."
+        />
+        <input type="submit" value="Поиск" />
+      </form>
+
+      <div class="row row-content align-items-center"></div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row"></div>
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <p>© Copyright 2021 Find Your Animal</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
