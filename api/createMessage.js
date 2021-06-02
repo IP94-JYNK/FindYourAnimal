@@ -1,5 +1,5 @@
 async ({ user1, dialogId, content }) => {
-  await application.auth.createMessage(
+  await application.functional.createMessage(
     user1,
     dialogId,
     content
